@@ -1,7 +1,7 @@
 class Api::V1::CommentsController < ApplicationController
 
     def index
-        comments = Post.all  
+        comments =Comment.all  
 
         render(json: comments, except: [:updated_at, :created_at])
     end
