@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-# user4 = User.create(name: 'Granit', 
-#                     userName: 'ghaxhaj', 
-#                     password: '1234', 
-#                     email: 'ghaxhaj@fordham.edu', 
-#                     imageUrl: 'https://media-exp1.licdn.com/dms/image/C4E03AQFmaTZS0oBBsw/profile-displayphoto-shrink_200_200/0?e=1587600000&v=beta&t=H8qsIYaycCHeLwsEV_u5_lr50EkNQKdNpVv8xLgOd98')
+user4 = User.create(name: 'Granit', 
+                    userName: 'ghaxhaj', 
+                    password: '1234', 
+                    email: 'ghaxhaj@fordham.edu', 
+                    imageUrl: 'https://media-exp1.licdn.com/dms/image/C4E03AQFmaTZS0oBBsw/profile-displayphoto-shrink_200_200/0?e=1587600000&v=beta&t=H8qsIYaycCHeLwsEV_u5_lr50EkNQKdNpVv8xLgOd98')
 
 
 
