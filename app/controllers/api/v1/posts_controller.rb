@@ -3,7 +3,20 @@ class Api::V1::PostsController < ApplicationController
     def index
         posts = Post.all  
 
-        render(json: posts, except: [:updated_at, :created_at])
+        # render(json: posts, except: [:updated_at, :created_at])
+        render json: posts.to_json(include: [:likes, :comments])
+    end
+
+    def show
+        post = Post.find(params[:id])
+        render json: post.to_json(include: [:likes, :comments])
+            # include: => {
+            # :likes, 
+            # :comments => { :only => [:content]} },
+            # :except => [:updated_at, :created_at]
+            # ])
+        
+        
     end
 
     def create
@@ -31,7 +44,7 @@ class Api::V1::PostsController < ApplicationController
       private
     
     def post_params
-        params.require(:post).permit(:content, :user_caption)
+        params.require(:post).permit(:user_id, :content, :user_caption)
     end
     
 

@@ -1,24 +1,32 @@
-# README
+class User
+    has_many :posts
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+    has_many :likes
+    has_many :post_likes, through: :likes, class_name: "Post"
 
-Things you may want to cover:
+    has_many :comments
+    has_many :post_comments, through: :comments, class_name: "Post"
+end 
 
-* Ruby version
 
-* System dependencies
+class Post
+    belongs_to :user
 
-* Configuration
+    has_many :likes
+    has_many :user_likes, through: :likes, class_name: "User"
 
-* Database creation
+    has_many :comments  
+    has_many :user_comments, through: :comments, class_name: "User"
+ 
+end
 
-* Database initialization
+class Like
+    belongs_to :user
+    belongs_to :post   
+end  
 
-* How to run the test suite
+class comment
+    belongs_to :user
+    belongs_to :post   
+end
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
