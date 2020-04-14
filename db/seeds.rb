@@ -4,6 +4,12 @@
 # Examples:
 #
 
+# 20.times do 
+#         User.create(
+#           username: Faker::Name.unique.name,
+#           password: "123"
+#         )
+#       end
 
 User.create(name: 'Granit', 
             userName: 'ghaxhaj', 

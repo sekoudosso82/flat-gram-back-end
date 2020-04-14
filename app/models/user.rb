@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-    # has_secure_password 
+    has_secure_password 
+    validates :userName, uniqueness: { case_sensitive: false }
+    validates :password, length: { in: 3..20 }
+    # validates :userName, uniqueness: true
 
     has_many :posts, dependent: :destroy
         
@@ -11,8 +14,6 @@ class User < ApplicationRecord
     has_many :comments, dependent: :destroy
     has_many :post_comments, through: :comments, class_name: "Post"
 
-    validates :userName, uniqueness: true
-    validates :userName, uniqueness: { case_sensitive: false }
     
-    validates :password, :email, presence: true
+    # validates :password, :email, presence: true
 end
