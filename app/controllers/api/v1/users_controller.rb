@@ -7,9 +7,19 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def create
-        user = User.create(user_params)
-    
-        render json: user
+        # make a user uses the username and password
+        user = User.new(
+            userName: params[:userName],
+            password: params[:password],
+          )
+      
+          if user.save
+            token = encode_token(user.id)
+            render json: {user: user, token: token}
+          else
+            render json: {errors: user.errors.full_messages}
+          end
+      
     end
       
     def update
@@ -31,7 +41,9 @@ class Api::V1::UsersController < ApplicationController
       private
     
     def user_params
-        params.require(:user).permit(:name, :userName, :password, :email, :imageUrl)
+        params.require(:user).permit(:userName, :password)
+
+        # params.require(:user).permit(:name, :userName, :password, :email, :imageUrl)
     end
     
 end
