@@ -1,6 +1,8 @@
 class Api::V1::AuthController < ApplicationController
-
-    def login
+   # before_action :authorized comes from ApplicationController
+  #  skip_before_action :authorized, only: [:login]
+    
+   def login
       user = User.find_by(userName: params[:userName])
   
       if user && user.authenticate(params[:password])

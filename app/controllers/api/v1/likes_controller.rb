@@ -1,4 +1,6 @@
 class Api::V1::LikesController < ApplicationController
+    # skip_before_action :authorized #, only: [:new, :create]
+    
     def index
         likes =Like.all  
         render(json: likes, except: [:updated_at, :created_at])

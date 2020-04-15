@@ -1,4 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
+    # skip_before_action :authorized, only: [:new, :create]
+    
     def index
         comments =Comment.all  
         render(json: comments, except: [:updated_at, :created_at])
