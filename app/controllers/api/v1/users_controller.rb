@@ -35,15 +35,13 @@ class Api::V1::UsersController < ApplicationController
       
     def update
         user = User.find(params[:id])
-    
         user.update(user_params)
-    
         render json: user, except: [:updated_at, :created_at]
     end
     
     def destroy
         user = User.find(params[:id])
-    
+  
         user.destroy
     
         render json: user
@@ -52,7 +50,7 @@ class Api::V1::UsersController < ApplicationController
       private
     
     def user_params
-        params.require(:user).permit(:userName, :password)
+        params.require(:user).permit(:name, :userName, :password, :email, :imageUrl )
 
         # params.require(:user).permit(:name, :userName, :password, :email, :imageUrl)
     end
