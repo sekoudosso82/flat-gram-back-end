@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
-
+  
+  # before_action :authorized #lock down this whole app
   def encode_token(id)
     JWT.encode({user_id: id}, "super_secret_code")
   end
@@ -22,6 +23,10 @@ class ApplicationController < ActionController::API
 
   def logged_in?
     !!session_user
+  end
+
+  def authorized
+    redirect_to login_path unless logged_in?
   end
 
 end
