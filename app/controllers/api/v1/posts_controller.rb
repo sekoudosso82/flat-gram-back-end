@@ -2,19 +2,32 @@ class Api::V1::PostsController < ApplicationController
     # skip_before_action :authorized #, only: [:new, :create]
     def index
         posts = Post.all  
+        render json: posts.to_json(
+            :include => {
+            :user => {:only => [:userName]},
+            :likes => { :only => [:count]},
+            :comments => { :only => [:content]}
+             },
+            :except => [:updated_at, :created_at])
 
         # render(json: posts, except: [:updated_at, :created_at])
-        render json: posts.to_json(include: [:likes, :comments])
+        # render json: posts.to_json(include: [:likes, :comments])
     end
 
     def show
         post = Post.find(params[:id])
-        render json: post.to_json(include: [:likes, :comments])
-            # include: => {
-            # :likes, 
-            # :comments => { :only => [:content]} },
-            # :except => [:updated_at, :created_at]
-            # ])
+        
+        render json: post.to_json(
+            :include => {
+            :user => {:only => [:userName]},
+            :likes => { :only => [:count]},
+            :comments => { :only => [:content]}
+             },
+            :except => [:updated_at, :created_at])
+        
+        # render json: post, 
+        #     include: [:user, :likes, :comments],
+        #     except: [:updated_at, :created_at]
         
         
     end

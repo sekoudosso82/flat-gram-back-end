@@ -2,12 +2,17 @@ class Api::V1::UsersController < ApplicationController
   # skip_before_action :authorized, only: [ :create]
     def index
         users = User.all  
-
-        render(json: users, except: [:updated_at, :created_at])
+        render json: users, 
+        include: [:posts],
+        except: [:updated_at, :created_at]
+        # render(json: users, except: [:updated_at, :created_at])
     end
     def show
       user = User.find(params[:id])
-      render(json: user, except: [:updated_at, :created_at])
+       render json: user, 
+            include: [:posts],
+            except: [:updated_at, :created_at]
+      # render(json: user, except: [:updated_at, :created_at])
       # include: => {
           # :likes, 
           # :comments => { :only => [:content]} },
